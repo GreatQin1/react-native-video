@@ -223,7 +223,7 @@ export class VideoController {
    * Release the video player.
    */
   release() {
-    this.avPlayer.release();
+    return this.avPlayer.release();
   }
 
   /**

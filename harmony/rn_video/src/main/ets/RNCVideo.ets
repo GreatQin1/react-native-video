@@ -153,10 +153,10 @@ export struct RNCVideo {
 
   }
 
-  aboutToDisappear() {
+  async aboutToDisappear() {
+    await this.playVideoModel.release();
     this.unregisterDescriptorChangesListener?.()
     this.cleanupCommandCallback?.()
-    this.playVideoModel.release();
   }
 
   registerCommandCallback() {
@@ -327,10 +327,10 @@ export struct RNCVideo {
         .align(Alignment.Center)
         .height(this.viewHeight)
         .width(this.viewWidth)
-        .onDisAppear(() => {
+        .onDisAppear(async () => {
+          await this.playVideoModel.release();
           this.unregisterDescriptorChangesListener?.()
           this.cleanupCommandCallback?.()
-          this.playVideoModel.release();
         })
     }
   }
